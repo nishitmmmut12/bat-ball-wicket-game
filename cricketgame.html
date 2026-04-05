@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cricket game</title>
+    <style>
+        body{
+        text-align: center;
+        background-color: rgb(97, 17, 97);
+        }
+        .usermove{
+            color: violet;
+            background-color: rgb(244, 247, 99);
+            height: 50px ;
+            margin: auto;
+            border-radius: 30px;
+            border-color: black;
+            border-inline: calc();
+        }
+    </style>
+    </head>
+    <body>
+        <button class="usermove" onclick="
+            let usermove = 'BAT';
+    let cmv =  computerMove();
+    let result= RESULT('BAT',cmv);
+            alert(`You chose ${usermove} and computer chose ${cmv}
+            final result: ${result}
+
+  wins:${score.win}, losses:${score.loss},ties:${score.tie}`);
+            ">BAT</button>
+        <button class="usermove" onclick="
+        usermove = 'BALL';
+            cmv =  computerMove();
+            result = RESULT('BALL',cmv);
+        
+            alert(`You chose ${usermove} and computer chose ${cmv}
+
+    final Result: ${result}
+    
+  wins:${score.win}, losses:${score.loss},ties:${score.tie}`);
+   
+            
+            ">BALL</button>
+        <button class="usermove" onclick="
+
+            usermove = 'WICKET';
+            cmv =  computerMove();
+                result = RESULT('WICKET',cmv);
+        
+            
+            alert(`You chose ${usermove} and computer chose ${cmv}
+
+     final Result : ${result}
+
+      wins:${score.win}, losses:${score.loss},ties:${score.tie}`);
+
+ 
+        
+        ">WICKET</button>
+        <button class ="usermove"
+        onclick="score.win =0; score.loss=0 ; score.tie =0; 
+         alert('scores are reset') ">RESET SCORE</button>
+
+         <h3 id="user-move"></h3>
+          <h3 id="computer-move"></h3>
+           <h3 id="result"></h3>
+            <h3 id="score"></h3>
+    </body>
+    <script>
+        let score ={
+         win:0,
+         loss:0,
+         tie:0
+        }
+        
+   
+    
+            function computerMove(){
+
+                let cmv = Math.random();
+            if(cmv >0 && cmv < 1/3 ){
+            return 'BAT';
+            }
+            
+            else  if(cmv >= 1/3 && cmv < 2/3 ){
+                return 'BALL';
+            }
+            else{
+            return 'WICKET';
+            }
+            
+            }
+        function RESULT(usermove,cmv){
+            document.querySelector('#user-move')
+            .innerTEXT = `You chose ${usermove}`;
+            if(usermove=== 'BAT'){
+                if(cmv ==='BAT'){
+                    score.tie++
+                    return 'TIE';
+                }
+                else if(cmv === 'BALL'){
+                    score.win++;
+                    return 'YOU WON';
+                }
+                else{
+                    score.loss++;
+                    return 'YOU LOOSE';
+                }
+            }
+        else  if(usermove=== 'BALL'){
+                if(cmv ==='BAT'){
+                    score.loss++;
+                    return 'YOU LOOSE';
+                }
+                else if(cmv === 'BALL'){
+                    score.tie++
+                    return 'TIE';
+                }
+                else{
+                    score.win++
+                    return 'YOU WON';
+                }
+            }
+            else if(usermove=== 'WICKET'){
+                if(cmv ==='BAT'){
+                    score.win++;
+                    return 'YOU WON';
+                }
+                else if(cmv === 'BALL'){
+                    score.loss++
+                    return 'YOU LOOSE';
+                }
+                else{
+                    score.tie++;
+                    return 'TIE';
+                }
+            }
+    
+
+        }
+        
+    </script>
+    </html>
